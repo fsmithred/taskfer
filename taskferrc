@@ -1,0 +1,12 @@
+# taskferrc
+# Configuration file for taskfer task manager (a.k.a. todo-fsr or todo)
+
+
+# Edit these variables as desired, or use the defaults.
+
+tasklist="$HOME/.taskfer/tasklist"
+tmplist="$HOME/.taskfer/tmplist"
+taskfer_pager="$(which less)"
+taskfer_editor="$(which nano)"           
+#taskfer_editor="$(which vim)"
+
