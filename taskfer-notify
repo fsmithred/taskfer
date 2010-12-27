@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# taskfer-notify
+
+taskfer_dir=$HOME/.taskfer
+
+function taskfer_configuration {
+    if [[ -f $taskfer_dir/taskferrc ]] ; then
+        source $taskfer_dir/taskferrc
+    fi
+    tasklist=${tasklist:="$taskfer_dir/tasklist"}
+}
+
+taskfer_configuration
+
+# comment out the two lines that have "DontRun" in them if you want
+# a popup xterm with calendar along with the notification window.
+: << DontRun
+# Check that X is running before starting cal in xterm
+function show_cal {
+if [[ -n $DISPLAY ]]
+then
+#    xterm -geometry 70x18+0+0  -hold -e cal -3  &
+#    xterm -font -*-fixed-medium-r-*-*-20-*-*-*-*-*-iso8859-* -geometry 67x12+0+0 -hold -e cal -3 &  
+    xterm -fa monaco -fs 11 -geometry 67x12+0+0 -hold -e cal -3 &
+fi
+}
+DontRun
+
+function show_notification {
+ddt=$(date +%F)
+if [[ -n $(cat "$tasklist" | cut -d"|" -f2 | grep $ddt) ]]
+then
+    notify-send -t 7000 "You have tasks listed for today. Check your todo list."
+
+#else
+#    notify-send -t 7000 "Nothing to do today."
+    exit 0
+fi
+}
+
+#show_cal
+show_notification
