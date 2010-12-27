@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# taskfer-setup
+# This script copies the default taskfer configuration file
+# to the specified taskfer directory ($taskfer_dir).
+
+taskfer_dir="$HOME/.taskfer"
+
+if ! [[ -d $taskfer_dir ]]
+then
+    mkdir "$taskfer_dir"
+fi
+
+if ! [[ -f "$taskfer_dir"/taskferrc ]]
+then
+    cp /etc/taskferrc "$taskfer_dir"/taskferrc
+    echo "======= copying config file to
+    $HOME/.taskfer/taskferrc"
+else
+    echo "
+        $taskfer_dir/taskferrc already exists.
+        Overwrite with default configuration?
+        "
+    read answer
+    case $answer in
+        [yY]*) cp /etc/taskferrc "$taskfer_dir"/taskferrc
+               echo "File copied." ;;
+            *) ;;
+    esac
+fi
+
+exit 0
