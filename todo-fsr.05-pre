@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# todo-fsr.05-pre (aka taskfer, aka todo)
-
+# todo-fsr (aka taskfer, aka todo)
+version="0.05-pre5"
 
 # Copyright 2010 fsmithred at gmail dot com
 # License: Artistic License 2.0
@@ -721,7 +721,7 @@ function show_version {
 	exit 0
 }
 
-version_text="Taskfer/todo 0.05
+version_text="Taskfer/todo $version
 Copyright (C) 2010 fsmithred@gmail.com
 License: Artistic License 2.0 
 <http://www.perlfoundation.org/artistic_license_2_0> 
@@ -828,7 +828,7 @@ do
               fi 
               print_day_files ;;
               
-      -pw|--printweek
+      -pw|--printweek)
               if -- "$2" ]]
               then
                   days="$2"
