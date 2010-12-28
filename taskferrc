@@ -3,9 +3,19 @@
 
 
 # Edit these variables as desired, or use the defaults.
+# If you want to change taskfer_dir, you must do it in the main script.
+#
+# tasklist is the file that contains all your entries.
+# tmplist is a temp file used in the script.
+# print_dir is where output files will go.
+# todolist is part of the name of the output files.
+# taskfer_pager is used with several options to display on screen.
+# taskfer editor is the editor used with the -e option.
 
 tasklist="$HOME/.taskfer/tasklist"
 tmplist="$HOME/.taskfer/tmplist"
+print_dir=$print_dir:="$taskfer_dir"
+todolist=$todolist:="$print_dir/todolist"
 taskfer_pager="$(which less)"
 taskfer_editor="$(which nano)"           
 #taskfer_editor="$(which vim)"
