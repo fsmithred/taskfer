@@ -499,7 +499,7 @@ function print_week_file {
 #    # This line outputs the calendar and entries to a date-stamped text file.
 #    { cal -3 ; echo ; sort -t"|" -k2 "$tmplist" | awk -F"|" '{ print $1 "\t" $2 $3 }' ; } > todo_week_$(date +%F)
 #     # This line outputs just the entries to a date-stamped text file.
-    { sort -t"|" -k2 "$tmplist" | awk -F"|" '{ print $1 "\t" $2 $3 }' ; } > todo_week_$(date +%F)
+    { sort -t"|" -k2 "$tmplist" | awk -F"|" '{ print $1 $2 $3 }' ; } > "$todolist"_week_$(date +%F)
       rm "$tmplist"
     else
       echo "No tasks listed for next $days days"
@@ -829,7 +829,7 @@ do
               print_day_files ;;
               
       -pw|--printweek)
-              if -- "$2" ]]
+              if [[ "$2" ]]
               then
                   days="$2"
               else
