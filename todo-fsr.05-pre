@@ -92,7 +92,7 @@ version="0.05-pre5"
 ## IF YOU WANT TASKFER TO USE A DIFFERENT DIRECTORY, CHANGE IT HERE. ##
 
 taskfer_dir=$HOME/.taskfer
-print_dir="$taskfer_dir"
+
 
 if ! [[ -d $taskfer_dir ]]
     then
@@ -108,6 +108,7 @@ function taskfer_configuration {
 #    # if any are unset, this will set them.
     tasklist=${tasklist:="$taskfer_dir/tasklist"}
     tmplist=${tmplist:="$taskfer_dir/tmplist"}
+    print_dir=${print_dir:="$taskfer_dir"}
     todolist=${todolist:="$print_dir/todolist"}
     taskfer_pager=${taskfer_pager:=$(type -p less)}
     taskfer_editor=${taskfer_editor:=$(type -p nano)}
