@@ -14,8 +14,8 @@
 
 tasklist="$HOME/.taskfer/tasklist"
 tmplist="$HOME/.taskfer/tmplist"
-print_dir=$print_dir:="$taskfer_dir"
-todolist=$todolist:="$print_dir/todolist"
+print_dir="$taskfer_dir"
+todolist="$print_dir/todolist"
 taskfer_pager="$(which less)"
 taskfer_editor="$(which nano)"           
 #taskfer_editor="$(which vim)"
