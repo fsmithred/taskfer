@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# taskfer-genmon
+#
+# If your taskfer entries have the time in the beginning of the text
+# field, then any of today's entries with times prior to now will 
+# not be displayed. 
+
+# Use this variable only if you use a non-standard location 
+# for the config file, taskferrc.
+configfile=""
+
+
+#ddt=$(date --date="tomorrow" +%F)
+ddt=$(date +%F)
+
+
+if [[ -f $HOME/.taskfer/taskferrc ]] ; then
+    source "$HOME"/.taskfer/taskferrc
+elif [[ -f /etc/taskferrc ]] ; then
+    source /etc/taskferrc
+elif [[ -n $configfile ]] ; then
+    source "$configfile"
+else
+    echo "    You need to edit this script to set the location
+    of the configuration file, taskferrc."
+fi
+
+
+while read line
+do
+    if [[ -n $(echo $line | cut -d"|" -f2 | grep $ddt) ]] ; then
+        if [[ $(echo $line |cut -d"|" -f3) > $(date +%H:%M) ]] ; then
+            echo "$line" >> "$tmplist"
+        fi
+    fi
+done < "$tasklist"
+    if [[ -f $tmplist ]] ; then
+      awk -F"|" '{ print $1 "\t" $3 }' "$tmplist" | sort -k2
+      rm "$tmplist"    
+    else
+      echo "Nothing scheduled today."
+    fi
+exit 0
