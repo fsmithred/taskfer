@@ -1,6 +1,6 @@
 # taskferrc
 # Configuration file for taskfer task manager (a.k.a. todo-fsr or todo)
-
+# Version 0.05
 
 # Edit these variables as desired, or use the defaults.
 # If you want to change taskfer_dir, you must do it in the main script.
@@ -14,9 +14,16 @@
 
 tasklist="$HOME/.taskfer/tasklist"
 tmplist="$HOME/.taskfer/tmplist"
-print_dir="$taskfer_dir"
+print_dir="$HOME"
 todolist="$print_dir/todolist"
-taskfer_pager="$(which less)"
-taskfer_editor="$(which nano)"           
-#taskfer_editor="$(which vim)"
+taskfer_pager="$(type -p less)"
+taskfer_editor="$(type -p nano)"           
+#taskfer_editor="$(type -p vim)"
 
+# change show_none to "yes" if you want entries with no due-date
+# to be shown when recalling the week's tasks
+show_none="no"
+
+# change print_none to "yes" if you want entries with no due-date
+# to be included when printing a file with the week's tasks
+print_none="no"
