@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Taskfer
+Comment= Todo-list manager and calendar
+Exec=/usr/bin/start-taskfer
+Terminal=true
+Type=Application
+Icon=stock_calendar
+Categories=GNOME;GTK;Utilities;
