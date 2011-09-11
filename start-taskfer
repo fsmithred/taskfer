@@ -1,0 +1,85 @@
+#! /usr/bin/env bash
+# start-taskfer
+
+echo "
+ Choose an option for starting Taskfer. This is a limited list. For full
+ options, run todo-fsr from a terminal.
+
+ a) add new entry
+ d) list tasks due today
+ e) edit
+ h) help
+ k) recall entries by keyword or phrase. Quote phrases.
+ l) list all entries.
+ n) list entries with \"none\" for due date
+ p) print the next n days in n files
+ pw) print the next n days in one file
+ r) enter a recurrent event
+ t) show entries that match a tag
+ w) list tasks due this week
+ x) delete an entry
+ xr) delete an entry (display reverse order)
+ 
+ "
+
+read ans
+case $ans in
+
+	a) todo-fsr
+	exit 0 ;;
+	
+	d) echo " Enter the due date, or just hit ENTER for today's date.
+ (use almost any format, including words like \"yesterday\" or \"next week\" or \"Thursday\")"
+	read date
+	todo-fsr -d "$date"
+	exit 0 ;;
+
+	e) todo-fsr -e
+	exit 0 ;;
+	
+	h) todo-fsr -h
+	exit 0 ;;
+	
+	k) echo " Enter the keyword you'd like to search"
+	read key
+	todo-fsr -k "$key"
+	exit 0 ;;
+	
+	l) todo-fsr -l
+	exit 0 ;;
+	
+	n) todo-fsr -n
+	exit 0 ;;
+
+	p) echo " Enter the number of days to print, or hit ENTER if you
+ want the next week printed. One file will be made for each day."
+	read days
+	todo-fsr -p "$days"
+	exit 0 ;;
+	
+	pw) echo " Enter the number of days to print, or hit ENTER if you
+ want the next week printed. Entries for all dates will go into one file."
+	read days
+	todo-fsr -pw "$days"
+	exit 0 ;;
+	
+	r) todo-fsr -r
+	exit 0 ;;
+	
+	t) echo " Enter the tag you'd like to search"
+	read tag
+	todo-fsr -t "$tag"
+	exit 0 ;;
+	
+	w) todo-fsr -w
+	exit 0 ;;
+		
+	x) todo-fsr -x
+	exit 0 ;;
+	
+	xr) todo-fsr -xr
+	exit 0 ;;
+	
+	*) echo "Invalid or unimplemented option."
+	exit 0 ;;
+esac
